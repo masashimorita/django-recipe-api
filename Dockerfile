@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.10.2-slim
 
 RUN apt-get update -qq
 
@@ -7,8 +7,9 @@ ENV PYTHONUNBUFFERED 1
 #ENV PIPENV_VENV_IN_PROJECT 1
 
 WORKDIR /app
-RUN pip install pipenv
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
 
-ADD . .
+ADD . /app
 EXPOSE 80
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:7000" ]
