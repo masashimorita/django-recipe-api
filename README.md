@@ -1,4 +1,4 @@
-# django-recipe
+# django-recipe-api
 Manage Recipe of yours!
 
 # Project Setup
@@ -10,7 +10,7 @@ Manage Recipe of yours!
 
 2. Install Django library
     ```bash
-    $ docker-compose run --rm app pipenv install
+    $ docker-compose run --rm app pipenv install --system
     ```
 
 3. Migrate Database
