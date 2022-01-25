@@ -11,5 +11,9 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
 ADD . /app
+
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
+
 EXPOSE 80
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:7000" ]
