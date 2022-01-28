@@ -12,6 +12,13 @@ services:
       - .:/app
     ports:
       - 7000:7000
+    environment:
+      - DB_ENGINE=django.db.backends.postgresql_psycopg2
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - DB_HOST=db
+      - DB_PORT=5432
     depends_on:
       - db
 volumes:
