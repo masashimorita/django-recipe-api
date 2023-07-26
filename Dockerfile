@@ -1,19 +1,22 @@
-FROM python:3.11.4-slim
+FROM python:3.11.4-alpine3.18
+LABEL maintainer="MasaCode"
 
-RUN apt-get update -qq
-
-ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-#ENV PIPENV_VENV_IN_PROJECT 1
 
+COPY ./requirements.txt /tmp/requirements.txt
+COPY ./app /app
 WORKDIR /app
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+EXPOSE 8000
 
-ADD . /app
+RUN python -m venv /py && \
+    /py/bin/pip install --upgrade pip && \
+    /py/bin/pip install -r /tmp/requirements.txt && \
+    rm -rf /tmp && \
+    adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
 
-RUN mkdir -p /vol/web/media
-RUN mkdir -p /vol/web/static
+ENV PATH="/py/bin:$PATH"
 
-EXPOSE 80
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:7000" ]
+USER django-user

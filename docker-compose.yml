@@ -8,10 +8,12 @@ services:
       - 5432:5432
   app:
     build: .
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/app
+      - ./app:/app
     ports:
-      - 7000:7000
+      - 8000:8000
     environment:
       - DB_ENGINE=django.db.backends.postgresql_psycopg2
       - DB_NAME=postgres
