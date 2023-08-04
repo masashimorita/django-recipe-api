@@ -1,11 +1,15 @@
-version: '3'
+version: '3.9'
 services:
   db:
-    image: postgres:11.1-alpine
+    image: postgres:15.3-alpine
     volumes:
       - postgresql:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    environment:
+      - POSTGRES_DB=recipe_api_db
+      - POSTGRES_USER=recipe_user
+      - POSTGRES_PASSWORD=password
   app:
     build: 
       context: .
@@ -19,12 +23,12 @@ services:
       - 8000:8000
     environment:
       - DB_ENGINE=django.db.backends.postgresql_psycopg2
-      - DB_NAME=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=root
+      - DB_NAME=recipe_api_db
+      - DB_USER=recipe_user
+      - DB_PASSWORD=password
       - DB_HOST=db
       - DB_PORT=5432
     depends_on:
       - db
 volumes:
-  postgresql:
+  postgresql: {}
