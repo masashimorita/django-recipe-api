@@ -3,7 +3,10 @@ Simple tests
 """
 
 from django.test import SimpleTestCase
+
+
 from app.tests import calc
+
 
 class CalcTest(SimpleTestCase):
     """
