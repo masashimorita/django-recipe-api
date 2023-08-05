@@ -22,7 +22,7 @@ services:
     ports:
       - 8000:8000
     environment:
-      - DB_ENGINE=django.db.backends.postgresql_psycopg2
+      - DB_ENGINE=django.db.backends.postgresql
       - DB_NAME=recipe_api_db
       - DB_USER=recipe_user
       - DB_PASSWORD=password
