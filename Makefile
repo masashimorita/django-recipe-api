@@ -3,8 +3,11 @@
 build:
 	docker compose build
 
-create:
+create-project:
 	docker compose run --rm app sh -c "django-admin startproject app ."
+
+create-app:
+	docker compose run --rm app sh -c "python manage.py startapp $(name)"
 
 sh:
 	docker compose run --rm app sh
