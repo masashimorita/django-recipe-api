@@ -45,7 +45,7 @@ def create_recipe(user, **params):
     return recipe
 
 
-class PublicRecipeAPITests(TestCase):
+class PublicRecipesAPITests(TestCase):
     """Test unauthenticated API requests."""
 
     def setUp(self):
@@ -58,7 +58,7 @@ class PublicRecipeAPITests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class PrivateRecipeAPITests(TestCase):
+class PrivateRecipesAPITests(TestCase):
     """Test authenticated API requests."""
 
     def setUp(self):
